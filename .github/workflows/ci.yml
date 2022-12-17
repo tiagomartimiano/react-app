@@ -57,3 +57,24 @@ jobs:
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
+      - name: Upload Test Coverage
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: code-coverage
+          path: coverage   
+
+      - name: Build Project
+        if: github.event_name == 'push'
+        run: npm run build
+
+      - name: Upload Build Folder
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: build
+          path: build
+
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
+        with:
+          name: build # for example    
