@@ -14,6 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.0.0
 
+      - name: Cache node_modules
+        uses: actions/cache@v3.0.8
+        with:
+          path: ~/.npm
+          key: mykey-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Use NodeJS
         uses: actions/setup-node@v3
         with:
