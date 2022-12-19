@@ -1,0 +1,4 @@
+@tiagomartimiano
+@tiagourubex
+*.js @tiagomartimiano
+/public/ @tiagomartimiano
